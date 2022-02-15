@@ -3,79 +3,176 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.dot {
+.table-row {
+  display: flex
+}
+
+.column {
+  flex: 50%;
+}
+
+.button {
   height: 2em;
   width: 2em;
   background-color: #bbb;
   border-radius: 50%;
   display: block;
-  margin: .25em;
+  margin: .5em;
+  text-align:center
 }
 
-.dot:hover {
+.half-button-spacer {
+  height: 1em;
+  width: 1em;
+  /*background-color: #bbb;*/
+  /*border-radius: 50%;*/
+  display: hidden;
+  margin: .5em;
+  text-align:center
+}
+
+.button:hover {
   background-color: green;
 }
 
 #push, #pull {
-  background: yellow;
+  /*background: yellow;*/
   position: relative;
-  margin: 2em;
+  margin: 1em;
 }
 
 #pull {
-  top: -10.75em;
-  left: 8em;
+  /*top: -10.75em;*/
+  /*left: 8em;*/
+  /*background: green;*/
 }
 
-#second {
-  position: absolute;
-  left: 2em;
+#push {
+  /*top: -10.75em;*/
+  /*left: 8em;*/
+  /*background: yellow;*/
+}
+
+.button-row-1 {
+  /*position: absolute;*/
+  /*left: 2em;*/
   top: 1.0em;
-  background: red;
+  /*background: red;*/
+}
+
+.button-row-2 {
+  /*position: absolute;*/
+  /*left: 4em;*/
+  top: 2.0em;
+  /**background: blue;*/
+}
+
+.column-header {
+  text-align:center
 }
 
 .active {
- background: cyan;
+  background: yellow;
 }
 </style>
 </head>
 <body>
 
-<div id="push">
-<div style="text-align:center">
-  <span class="dot c">c</span>
-  <span class="dot d">d</span>
-  <span class="dot e">e</span>
-  <span class="dot f">f</span>
+<div  >
+  <label for="notes">Choose a note</label>
+  <select name="notes" id="notes" autofocus onchange="GetSelectedNote(this)">
+    <option value="note-c">C</option>
+    <option value="note-d">D</option>
+    <option value="note-e">E</option>
+    <option value="note-f">F</option>
+  </select>
 </div>
 
-<div id="second" style="text-align:center">
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-</div>
-</div>
-
-<div id="pull">
-<div style="text-align:center">
-  <span class="dot">c</span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-</div>
-
-<div id="second" style="text-align:center">
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-</div>
-</div>
-
-
-<script type="javascript">
-document.getElementsByClassName('c')[0].classList.add('active');
+<script type="text/javascript">
+    function GetSelectedNote(notes) {
+        var selectedText = notes.options[notes.selectedIndex].innerHTML;
+        var selectedValue = notes.value;
+        //alert("Selected Text: " + selectedText + " Value: " + selectedValue);
+		console.log("Selected Value: " + selectedValue);
+		var list = document.getElementsByClassName('active');
+		console.log("found active elements: " + list.length);
+		for (var i=list.length-1, item; item = list[i]; i--) {
+		    /* must iterate in reverse order, because as we remove active, 
+			   the item implicitly gets removed from the list, causing it to shrink */
+		    console.log("removing active from: " + item);
+			item.classList.remove('active');
+        }
+		var list = document.getElementsByClassName(selectedValue);
+		console.log("found " + list.length + " elements of class " + selectedValue);
+		for (var i=0, item; item = list[i]; i++) {
+			console.log("add active to: " + item);
+			item.classList.add('active');
+        }
+    }
 </script>
+
+<div class="table-row">
+  <div class="column" id="pull">
+    <span class="column-header">Pull</span>
+    <div class="table-row">
+      <div class="button-row-2" >
+        <span class="half-button-spacer"></span>
+        <span class="button note-d">D</span>
+        <span class="button note-aisb">B/Ais</span>
+        <span class="button note-g">G</span>
+		<span class="button note-e">E</span>
+		<span class="button note-d">D</span>
+		<span class="button note-aisb">B/Ais</span>
+		<span class="button note-g">G</span>
+		<span class="button note-e">E</span>
+		<span class="button note-cisdesc">Cis/Des</span>
+		<span class="half-button-spacer"></span>
+      </div>
+      <div class="button-row-1" >
+        <span class="button note-h">H</span>
+        <span class="button note-a">A</span>
+        <span class="button note-f">F</span>
+        <span class="button note-d">D</span>
+        <span class="button note-h">H</span>
+        <span class="button note-a">A</span>
+        <span class="button note-f">F</span>
+        <span class="button note-d">D</span>
+        <span class="button note-h">H</span>
+        <span class="button note-gisas">Gis/As</span>
+      </div>
+    </div>
+  </div>
+  <div class="column" id="push">
+    <span class="column-header">Push</span>
+    <div class="table-row">
+      <div class="button-row-2" >
+        <span class="half-button-spacer"></span>
+        <span class="button note-f">F</span>
+        <span class="button note-c">C</span>
+        <span class="button note-a">A</span>
+        <span class="button note-f">F</span>
+        <span class="button note-c">C</span>
+        <span class="button note-a">A</span>
+        <span class="button note-f">F</span>
+        <span class="button note-c">C</span>
+        <span class="button note-dises">Dis/Es</span>
+		<span class="half-button-spacer"></span>
+      </div>
+      <div class="button-row-1" >
+        <span class="button note-e">E</span>
+        <span class="button note-c">C</span>
+        <span class="button note-g">G</span>
+        <span class="button note-e">E</span>
+        <span class="button note-c">C</span>
+        <span class="button note-g">G</span>
+        <span class="button note-e">E</span>
+        <span class="button note-c">C</span>
+        <span class="button note-g">G</span>
+        <span class="button note-fisges">Fis/Ges</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
