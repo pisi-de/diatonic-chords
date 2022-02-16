@@ -97,12 +97,43 @@
   </select>
 </div>
 
+<div  >
+  <label for="notes">Choose a chord</label>
+  <select name="notes" id="notes" autofocus onchange="GetSelectedNote(this)">
+    <option value=" "> </option>
+    <option value="note-c note-e note-g">C</option>
+    <option value="note-c note-dises note-g">c</option>
+    <option value="note-cisdes note-f note-gisas">C#</option>
+    <option value="note-cisdes note-e note-gisas">c#</option>
+    <option value="note-d note-fisges note-a">D</option>
+    <option value="note-d note-f note-a">d</option>
+    <option value="note-dises note-g note-aisb">D#</option>
+    <option value="note-dises note-fisges note-aisb">d#</option>
+    <option value="note-e note-gisas note-h">E</option>
+    <option value="note-e note-g note-h">e</option>
+    <option value="note-f note-a note-c">F</option>
+    <option value="note-f note-gisas note-c">f</option>
+    <option value="note-fisges note-aisb note-cisdes">F#</option>
+    <option value="note-fisges note-a note-cisdes">f#</option>
+    <option value="note-g note-h note-d">G</option>
+    <option value="note-g note-aisb note-d">g</option>
+    <option value="note-gisas note-c note-dises">G#</option>
+    <option value="note-gisas note-h note-dises">g#</option>
+    <option value="note-a note-cisdes note-e">A</option>
+    <option value="note-a note-c note-e">a</option>
+    <option value="note-aisb note-d note-f">A#</option>
+    <option value="note-aisb note-cisdes note-f">a#</option>
+    <option value="note-h note-dises note-fisges">H</option>
+    <option value="note-h note-d note-fisges">h</option>
+  </select>
+</div>
+
 <script type="text/javascript">
     function GetSelectedNote(notes) {
         var selectedText = notes.options[notes.selectedIndex].innerHTML;
         var selectedValue = notes.value;
         //alert("Selected Text: " + selectedText + " Value: " + selectedValue);
-		console.log("Selected Value: " + selectedValue);
+		console.log("Selected Value(s): " + selectedValue);
 		var list = document.getElementsByClassName('active');
 		console.log("found active elements: " + list.length);
 		for (var i=list.length-1, item; item = list[i]; i--) {
@@ -111,12 +142,17 @@
 		    console.log("removing active from: " + item);
 			item.classList.remove('active');
         }
-		var list = document.getElementsByClassName(selectedValue);
-		console.log("found " + list.length + " elements of class " + selectedValue);
-		for (var i=0, item; item = list[i]; i++) {
-			console.log("add active to: " + item);
-			item.classList.add('active');
-        }
+		var values = selectedValue.split(' ');
+		console.log("Selected Value(s): " + values);
+		for (var v=0, value; value = values[v]; v++) {
+			console.log("add active to: " + value);
+			var list = document.getElementsByClassName(value);
+			console.log("found " + list.length + " elements of class " + value);
+			for (var i=0, item; item = list[i]; i++) {
+				console.log("add active to: " + item);
+				item.classList.add('active');
+			}
+		}
     }
 </script>
 
