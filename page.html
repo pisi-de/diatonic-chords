@@ -71,8 +71,14 @@
   text-align:center
 }
 
-.active {
-  background: yellow;
+.active0 {
+  background: green;
+}
+.active1 {
+  background: limegreen;
+}
+.active2 {
+  background: lime;
 }
 </style>
 </head>
@@ -129,19 +135,24 @@
 </div>
 
 <script type="text/javascript">
+    function reset(className) {
+		var list = document.getElementsByClassName(className);
+		console.log("found " + className + " elements: " + list.length);
+		for (var i=list.length-1, item; item = list[i]; i--) {
+		    /* must iterate in reverse order, because as we remove active, 
+			   the item implicitly gets removed from the list, causing it to shrink */
+		    console.log("removing active from: " + item);
+			item.classList.remove(className);
+        }
+	}
     function GetSelectedNote(notes) {
         var selectedText = notes.options[notes.selectedIndex].innerHTML;
         var selectedValue = notes.value;
         //alert("Selected Text: " + selectedText + " Value: " + selectedValue);
 		console.log("Selected Value(s): " + selectedValue);
-		var list = document.getElementsByClassName('active');
-		console.log("found active elements: " + list.length);
-		for (var i=list.length-1, item; item = list[i]; i--) {
-		    /* must iterate in reverse order, because as we remove active, 
-			   the item implicitly gets removed from the list, causing it to shrink */
-		    console.log("removing active from: " + item);
-			item.classList.remove('active');
-        }
+		reset('active0');
+		reset('active1');
+		reset('active2');
 		var values = selectedValue.split(' ');
 		console.log("Selected Value(s): " + values);
 		for (var v=0, value; value = values[v]; v++) {
@@ -150,7 +161,7 @@
 			console.log("found " + list.length + " elements of class " + value);
 			for (var i=0, item; item = list[i]; i++) {
 				console.log("add active to: " + item);
-				item.classList.add('active');
+				item.classList.add('active' + v);
 			}
 		}
     }
