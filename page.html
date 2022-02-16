@@ -13,19 +13,25 @@
 
 .button {
   height: 2em;
+  line-height: 1.75em; /* defines verrtical pos of button-label */
   width: 2em;
-  background-color: #bbb;
+  background-color: linen;
+  color: LightSlateGrey;
   border-radius: 50%;
   display: block;
   margin: .5em;
-  text-align:center
+  text-align:center;
+}
+
+.button-label {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1em; /*set line height back to normal*/
 }
 
 .half-button-spacer {
   height: 1em;
   width: 1em;
-  /*background-color: #bbb;*/
-  /*border-radius: 50%;*/
   display: hidden;
   margin: .5em;
   text-align:center
@@ -36,35 +42,22 @@
 }
 
 #push, #pull {
-  /*background: yellow;*/
   position: relative;
   margin: 1em;
 }
 
 #pull {
-  /*top: -10.75em;*/
-  /*left: 8em;*/
-  /*background: green;*/
 }
 
 #push {
-  /*top: -10.75em;*/
-  /*left: 8em;*/
-  /*background: yellow;*/
 }
 
 .button-row-1 {
-  /*position: absolute;*/
-  /*left: 2em;*/
   top: 1.0em;
-  /*background: red;*/
 }
 
 .button-row-2 {
-  /*position: absolute;*/
-  /*left: 4em;*/
   top: 2.0em;
-  /**background: blue;*/
 }
 
 .column-header {
@@ -72,98 +65,103 @@
 }
 
 .active0 {
-  background: green;
+  background: MediumAquaMarine;
+  color: black;
 }
+
 .active1 {
   background: limegreen;
+  color: black;
 }
+
 .active2 {
   background: lime;
+  color: black;
 }
 </style>
 </head>
 <body>
-
-<div  >
-  <label for="notes">Choose a note</label>
-  <select name="notes" id="notes" autofocus onchange="GetSelectedNote(this)">
-    <option value=" "> </option>
-    <option value="note-c">C</option>
-    <option value="note-cisdes">C#</option>
-    <option value="note-d">D</option>
-    <option value="note-dises">D#</option>
-    <option value="note-e">E</option>
-    <option value="note-f">F</option>
-    <option value="note-fisges">F#</option>
-    <option value="note-g">G</option>
-    <option value="note-gisas">G#</option>
-    <option value="note-a">A</option>
-    <option value="note-aisb">A#</option>
-    <option value="note-h">H</option>
-  </select>
+<div class="table-row">
+  <div class="column" >
+    <label for="notes">Choose a note</label>
+    <select name="notes" id="notes" autofocus onchange="GetSelectedNote(this)">
+      <option value=" "> </option>
+      <option value="note-c">C</option>
+      <option value="note-cisdes">C#</option>
+      <option value="note-d">D</option>
+      <option value="note-dises">D#</option>
+      <option value="note-e">E</option>
+      <option value="note-f">F</option>
+      <option value="note-fisges">F#</option>
+      <option value="note-g">G</option>
+      <option value="note-gisas">G#</option>
+      <option value="note-a">A</option>
+      <option value="note-aisb">A#</option>
+      <option value="note-h">H</option>
+    </select>
+  </div>
+  
+  <div class="column" >
+    <label for="notes">Choose a chord</label>
+    <select name="notes" id="notes" autofocus onchange="GetSelectedNote(this)">
+      <option value=" "> </option>
+      <option value="note-c note-e note-g">C</option>
+      <option value="note-c note-dises note-g">c</option>
+      <option value="note-cisdes note-f note-gisas">C#</option>
+      <option value="note-cisdes note-e note-gisas">c#</option>
+      <option value="note-d note-fisges note-a">D</option>
+      <option value="note-d note-f note-a">d</option>
+      <option value="note-dises note-g note-aisb">D#</option>
+      <option value="note-dises note-fisges note-aisb">d#</option>
+      <option value="note-e note-gisas note-h">E</option>
+      <option value="note-e note-g note-h">e</option>
+      <option value="note-f note-a note-c">F</option>
+      <option value="note-f note-gisas note-c">f</option>
+      <option value="note-fisges note-aisb note-cisdes">F#</option>
+      <option value="note-fisges note-a note-cisdes">f#</option>
+      <option value="note-g note-h note-d">G</option>
+      <option value="note-g note-aisb note-d">g</option>
+      <option value="note-gisas note-c note-dises">G#</option>
+      <option value="note-gisas note-h note-dises">g#</option>
+      <option value="note-a note-cisdes note-e">A</option>
+      <option value="note-a note-c note-e">a</option>
+      <option value="note-aisb note-d note-f">A#</option>
+      <option value="note-aisb note-cisdes note-f">a#</option>
+      <option value="note-h note-dises note-fisges">H</option>
+      <option value="note-h note-d note-fisges">h</option>
+    </select>
+  </div>
 </div>
-
-<div  >
-  <label for="notes">Choose a chord</label>
-  <select name="notes" id="notes" autofocus onchange="GetSelectedNote(this)">
-    <option value=" "> </option>
-    <option value="note-c note-e note-g">C</option>
-    <option value="note-c note-dises note-g">c</option>
-    <option value="note-cisdes note-f note-gisas">C#</option>
-    <option value="note-cisdes note-e note-gisas">c#</option>
-    <option value="note-d note-fisges note-a">D</option>
-    <option value="note-d note-f note-a">d</option>
-    <option value="note-dises note-g note-aisb">D#</option>
-    <option value="note-dises note-fisges note-aisb">d#</option>
-    <option value="note-e note-gisas note-h">E</option>
-    <option value="note-e note-g note-h">e</option>
-    <option value="note-f note-a note-c">F</option>
-    <option value="note-f note-gisas note-c">f</option>
-    <option value="note-fisges note-aisb note-cisdes">F#</option>
-    <option value="note-fisges note-a note-cisdes">f#</option>
-    <option value="note-g note-h note-d">G</option>
-    <option value="note-g note-aisb note-d">g</option>
-    <option value="note-gisas note-c note-dises">G#</option>
-    <option value="note-gisas note-h note-dises">g#</option>
-    <option value="note-a note-cisdes note-e">A</option>
-    <option value="note-a note-c note-e">a</option>
-    <option value="note-aisb note-d note-f">A#</option>
-    <option value="note-aisb note-cisdes note-f">a#</option>
-    <option value="note-h note-dises note-fisges">H</option>
-    <option value="note-h note-d note-fisges">h</option>
-  </select>
-</div>
-
 <script type="text/javascript">
     function reset(className) {
-		var list = document.getElementsByClassName(className);
-		console.log("found " + className + " elements: " + list.length);
-		for (var i=list.length-1, item; item = list[i]; i--) {
-		    /* must iterate in reverse order, because as we remove active, 
-			   the item implicitly gets removed from the list, causing it to shrink */
-		    console.log("removing active from: " + item);
-			item.classList.remove(className);
+        var list = document.getElementsByClassName(className);
+        console.log("found " + className + " elements: " + list.length);
+        for (var i=list.length-1, item; item = list[i]; i--) {
+            /* must iterate in reverse order, because as we remove active, 
+               the item implicitly gets removed from the list, causing it to shrink */
+            console.log("removing active from: " + item);
+            item.classList.remove(className);
         }
-	}
+    }
     function GetSelectedNote(notes) {
         var selectedText = notes.options[notes.selectedIndex].innerHTML;
         var selectedValue = notes.value;
         //alert("Selected Text: " + selectedText + " Value: " + selectedValue);
-		console.log("Selected Value(s): " + selectedValue);
-		reset('active0');
-		reset('active1');
-		reset('active2');
-		var values = selectedValue.split(' ');
-		console.log("Selected Value(s): " + values);
-		for (var v=0, value; value = values[v]; v++) {
-			console.log("add active to: " + value);
-			var list = document.getElementsByClassName(value);
-			console.log("found " + list.length + " elements of class " + value);
-			for (var i=0, item; item = list[i]; i++) {
-				console.log("add active to: " + item);
-				item.classList.add('active' + v);
-			}
-		}
+        console.log("Selected Value(s): " + selectedValue);
+        reset('active0');
+        reset('active1');
+        reset('active2');
+        var values = selectedValue.split(' ');
+        console.log("Selected Value(s): " + values);
+        for (var v=0, value; value = values[v]; v++) {
+            console.log("add active to: " + value);
+            var list = document.getElementsByClassName(value);
+            console.log("found " + list.length + " elements of class " + value);
+            for (var i=0, item; item = list[i]; i++) {
+                console.log("add active to: " + item);
+                item.classList.add('active' + v);
+            }
+        }
     }
 </script>
 
@@ -173,28 +171,28 @@
     <div class="table-row">
       <div class="button-row-2" >
         <span class="half-button-spacer"></span>
-        <span class="button note-d">D</span>
-        <span class="button note-aisb">A#</span>
-        <span class="button note-g">G</span>
-		<span class="button note-e">E</span>
-		<span class="button note-d">D</span>
-		<span class="button note-aisb">A#</span>
-		<span class="button note-g">G</span>
-		<span class="button note-e">E</span>
-		<span class="button note-cisdes">C#</span>
-		<span class="half-button-spacer"></span>
+        <span class="button note-d"><span class="button-label">D</span></span>
+        <span class="button note-aisb"><span class="button-label">A#</span></span>
+        <span class="button note-g"><span class="button-label">G</span></span>
+        <span class="button note-e"><span class="button-label">E</span></span>
+        <span class="button note-d"><span class="button-label">D</span></span>
+        <span class="button note-aisb"><span class="button-label">A#</span></span>
+        <span class="button note-g"><span class="button-label">G</span></span>
+        <span class="button note-e"><span class="button-label">E</span></span>
+        <span class="button note-cisdes"><span class="button-label">C#</span></span>
+        <span class="half-button-spacer"></span>
       </div>
       <div class="button-row-1" >
-        <span class="button note-h">H</span>
-        <span class="button note-a">A</span>
-        <span class="button note-f">F</span>
-        <span class="button note-d">D</span>
-        <span class="button note-h">H</span>
-        <span class="button note-a">A</span>
-        <span class="button note-f">F</span>
-        <span class="button note-d">D</span>
-        <span class="button note-h">H</span>
-        <span class="button note-gisas">G#</span>
+        <span class="button note-h"><span class="button-label">H</span></span>
+        <span class="button note-a"><span class="button-label">A</span></span>
+        <span class="button note-f"><span class="button-label">F</span></span>
+        <span class="button note-d"><span class="button-label">D</span></span>
+        <span class="button note-h"><span class="button-label">H</span></span>
+        <span class="button note-a"><span class="button-label">A</span></span>
+        <span class="button note-f"><span class="button-label">F</span></span>
+        <span class="button note-d"><span class="button-label">D</span></span>
+        <span class="button note-h"><span class="button-label">H</span></span>
+        <span class="button note-gisas"><span class="button-label">G#</span></span>
       </div>
     </div>
   </div>
@@ -212,7 +210,7 @@
         <span class="button note-f">F</span>
         <span class="button note-c">C</span>
         <span class="button note-dises">D#</span>
-		<span class="half-button-spacer"></span>
+        <span class="half-button-spacer"></span>
       </div>
       <div class="button-row-1" >
         <span class="button note-e">E</span>
